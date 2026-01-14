@@ -1,72 +1,60 @@
-# ⚽ Gestión LaLiga Hypermotion - CRUD MVC en PHP
+# ⚽ Panel de Gestión - LaLiga Hypermotion
 
 ![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
-![LaLiga](https://img.shields.io/badge/Style-Hypermotion-00ffcc?style=for-the-badge&labelColor=111)
+![LaLiga](https://img.shields.io/badge/Theme-Hypermotion-00ffcc?style=for-the-badge&labelColor=111)
 
-Una aplicación web completa desarrollada en **PHP nativo** siguiendo la arquitectura **MVC (Modelo-Vista-Controlador)**. Permite gestionar los equipos de la Segunda División Española (LaLiga Hypermotion) mediante un sistema CRUD protegido por un login seguro.
+Aplicación web profesional para la gestión de equipos de la **Segunda División Española 2025/26**. Desarrollada con PHP nativo bajo arquitectura **MVC**, cuenta con un sistema de autenticación seguro y una interfaz visual moderna estilo "Dark Neon" inspirada en la marca oficial.
 
-El diseño cuenta con un **Modo Oscuro (Dark Mode)** personalizado con colores neón, inspirado en la identidad visual oficial de la competición.
+## 🌟 Características
+
+* **🎨 Diseño Hypermotion:** Interfaz personalizada en modo oscuro con acentos Cyan Neón (`#00ffcc`).
+* **🔒 Login Seguro:** Autenticación de administradores con contraseñas encriptadas (`Bcrypt`).
+* **🏗️ Arquitectura MVC:** Código limpio separado en Modelos, Vistas y Controladores.
+* **⚡ CRUD Completo:**
+    * **C**reate: Alta de nuevos clubes.
+    * **R**ead: Listado dinámico de equipos.
+    * **U**pdate: Edición de datos con precarga.
+    * **D**elete: Eliminación de registros.
+* **🛡️ Seguridad:** Sanitización de datos y sentencias preparadas (PDO) contra Inyecciones SQL.
+* **✅ Validación:** Doble capa de validación (Frontend con JS + Backend con PHP).
 
 ## 📸 Capturas de Pantalla
 
-| Login | Dashboard | Edición |
-|:---:|:---:|:---:|
-| ![Login Screen](./screenshots/login.png) | ![Dashboard](./screenshots/dashboard.png) | ![Editar](./screenshots/editar.png) |
+*(Sube tus capturas a una carpeta `/screenshots` para verlas aquí)*
 
+| Login | Dashboard |
+|:---:|:---:|
+| ![Login](./screenshots/login.png) | ![Dashboard](./screenshots/dashboard.png) |
 
-## 🚀 Características Principales
+| Crear Equipo | Editar Equipo |
+|:---:|:---:|
+| ![Crear](./screenshots/crear.png) | ![Editar](./screenshots/editar.png) |
 
-* **Arquitectura MVC:** Separación clara entre lógica (Controladores), datos (Modelos) y diseño (Vistas).
-* **Autenticación Segura:** Sistema de Login con contraseñas encriptadas (`password_hash` y `password_verify`).
-* **CRUD Completo:**
-    * **C**reate: Añadir nuevos equipos.
-    * **R**ead: Listado dinámico con base de datos real.
-    * **U**pdate: Edición de datos existentes.
-    * **D**elete: Eliminación de registros con confirmación.
-* **Seguridad:**
-    * Protección contra Inyección SQL (PDO y Sentencias Preparadas).
-    * Sanitización de datos de entrada (`htmlspecialchars`, `strip_tags`).
-    * Protección de rutas (Redirección si no hay sesión activa).
-* **Interfaz Moderna:** Diseño responsive con **Bootstrap 5** y CSS personalizado (efectos neón, tarjetas oscuras).
-* **Validación:** Doble validación de formularios (Cliente con JavaScript y Servidor con PHP).
-
-## 🛠️ Tecnologías Utilizadas
-
-* **Lenguaje:** PHP 8.
-* **Base de Datos:** MySQL / MariaDB.
-* **Frontend:** HTML5, CSS3, Bootstrap 5.3.
-* **Scripting:** JavaScript (Vanilla).
-* **Entorno:** XAMPP (Apache Server).
-
-## ⚙️ Instalación y Configuración
-
-Sigue estos pasos para probar el proyecto en tu entorno local (XAMPP, MAMP, WAMP):
+## 🛠️ Instalación y Configuración
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [https://github.com/TU_USUARIO/liga-hypermotion-crud.git](https://github.com/TU_USUARIO/liga-hypermotion-crud.git)
-    cd liga-hypermotion-crud
+    git clone [https://github.com/TU_USUARIO/liga-hypermotion.git](https://github.com/TU_USUARIO/liga-hypermotion.git)
+    cd liga-hypermotion
     ```
 
 2.  **Base de Datos:**
-    * Abre phpMyAdmin.
+    * Abre tu gestor SQL (phpMyAdmin).
     * Crea una base de datos llamada `gestion_liga`.
-    * Importa el archivo `database/script.sql` (o ejecuta el SQL proporcionado en el proyecto).
+    * Importa el script SQL incluido en la documentación o crea las tablas `usuarios` y `equipos`.
 
 3.  **Configuración:**
-    * Abre el archivo `config/Database.php`.
-    * Asegúrate de que las credenciales coincidan con tu servidor:
+    * Edita `config/Database.php` con tus credenciales:
     ```php
-    private $host = 'localhost'; // O '127.0.0.1'
-    private $db_name = 'gestion_liga';
+    private $host = 'localhost'; // o '127.0.0.1'
     private $username = 'root';
-    private $password = ''; // Tu contraseña de MySQL
+    private $password = '';
     ```
 
 4.  **Acceso:**
-    * Abre tu navegador en: `http://localhost/liga-hypermotion-crud`
+    * **URL:** `http://localhost/liga-hypermotion`
     * **Usuario:** `alberto`
     * **Contraseña:** `1234`
 
@@ -74,12 +62,12 @@ Sigue estos pasos para probar el proyecto en tu entorno local (XAMPP, MAMP, WAMP
 
 ```text
 /
-├── assets/             # Archivos estáticos (JS, CSS, Imágenes)
+├── assets/             # JavaScript (Validaciones)
 ├── config/             # Conexión a Base de Datos
-├── controllers/        # Lógica de negocio (Auth, Equipos)
-├── models/             # Interacción con la BD (Consultas SQL)
-├── views/              # Interfaz de usuario (HTML/PHP)
-│   ├── auth/           # Vistas de Login
-│   └── equipos/        # Vistas del CRUD
+├── controllers/        # Controladores (Auth, Equipo)
+├── models/             # Modelos (Consultas SQL)
+├── views/              # Vistas HTML/PHP
+│   ├── auth/           # Login
+│   └── equipos/        # CRUD (Listar, Crear, Editar)
 ├── index.php           # Enrutador principal
 └── README.md           # Documentación
